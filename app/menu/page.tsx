@@ -40,6 +40,7 @@ export default function MenuPage() {
     setIsLoading(true);
     const unsubscribe = getBanners((banners) => {
       if (banners.length > 0) {
+        // Admin items come FIRST, then default items
         const dynamicItems: MenuItemData[] = banners.map((banner) => ({
           id: banner.id!,
           name: banner.name,
@@ -47,8 +48,10 @@ export default function MenuPage() {
           image: banner.imageUrl,
           description: banner.description,
         }));
-        setMenuItems(dynamicItems);
+        // Combine: admin items first, then defaults
+        setMenuItems([...dynamicItems, ...defaultSnacks]);
       } else {
+        // No admin items, just show defaults
         setMenuItems(defaultSnacks);
       }
       setIsLoading(false);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { auth } from "../lib/firebase";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { getUserOrders, updateOrderStatus } from "../lib/firestore";
@@ -83,9 +84,20 @@ export default function MyOrdersPage() {
   if (!user) {
     return (
       <main className="min-h-screen bg-white">
-        <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
+        <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
           <div className="flex justify-between items-center max-w-md mx-auto">
-            <Link href="/" className="text-2xl font-extrabold text-white">← Snacks</Link>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 relative">
+                <Image
+                  src="/logo.png"
+                  alt="Crunch by Nadan"
+                  fill
+                  className="object-contain rounded-lg"
+                  priority
+                />
+              </div>
+              <Link href="/" className="text-xl font-extrabold text-white">← Orders</Link>
+            </div>
           </div>
         </header>
         <div className="max-w-md mx-auto px-4 py-12 text-center">
@@ -102,9 +114,20 @@ export default function MyOrdersPage() {
 
   return (
     <main className="min-h-screen bg-white pb-20">
-      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
+      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
-          <Link href="/" className="text-2xl font-extrabold text-white">← Snacks</Link>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 relative">
+              <Image
+                src="/logo.png"
+                alt="Crunch by Nadan"
+                fill
+                className="object-contain rounded-lg"
+                priority
+              />
+            </div>
+            <Link href="/" className="text-xl font-extrabold text-white">← My Orders</Link>
+          </div>
           <div className="flex items-center gap-3">
             {user.photoURL ? (
               <img src={user.photoURL} alt={user.displayName || "User"} className="w-9 h-9 rounded-full object-cover border-2 border-[#F3C623]" />

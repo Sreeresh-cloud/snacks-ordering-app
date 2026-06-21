@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import MenuItemComponent from "../components/MenuItem";
 import Cart from "../components/Cart";
 import CheckoutForm from "../components/CheckoutForm";
@@ -89,11 +90,22 @@ export default function MenuPage() {
   return (
     <main className="min-h-screen pb-20 max-w-md mx-auto bg-white">
       {/* Header */}
-      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
+      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
-          <div>
-            <h1 className="text-2xl font-extrabold text-white">Snacks</h1>
-            <p className="text-sm text-white/80">Delicious bites delivered</p>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 relative">
+              <Image
+                src="/logo.png"
+                alt="Crunch by Nadan"
+                fill
+                className="object-contain rounded-lg"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
+              <p className="text-xs text-white/80">by Nadan</p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <UserProfile />
@@ -102,7 +114,7 @@ export default function MenuPage() {
       </header>
 
       {/* Decorative banner */}
-      <div className="bg-gradient-to-r from-[#259B37] to-[#2eb545] px-4 py-2">
+      <div className="bg-gradient-to-r from-[#4CAF50] to-[#2eb545] px-4 py-2">
         <div className="flex items-center gap-2 justify-center">
           <div className="w-2 h-2 bg-[#F3C623] rotate-45" />
           <p className="text-white text-sm font-medium">Fresh & Hot Delivery</p>
@@ -118,7 +130,7 @@ export default function MenuPage() {
         
         {isLoading ? (
           <div className="text-center py-12 text-gray-500">
-            <div className="animate-spin text-3xl mb-2 text-[#259B37]">◆</div>
+            <div className="animate-spin text-3xl mb-2 text-[#4CAF50]">◆</div>
             Loading menu...
           </div>
         ) : (

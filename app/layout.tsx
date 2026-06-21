@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Snack Ordering App",
+  title: "Crunch by Nadan",
   description: "Order delicious snacks online",
   icons: {
     icon: "/logo.png",

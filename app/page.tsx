@@ -38,7 +38,7 @@ export default function Home() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin text-4xl mb-2 text-[#259B37]">◆</div>
+          <div className="animate-spin text-4xl mb-2 text-[#4CAF50]">◆</div>
           <p className="text-gray-500">Loading...</p>
         </div>
       </main>
@@ -49,20 +49,20 @@ export default function Home() {
     <main className="min-h-screen bg-white flex items-center justify-center p-4">
       {/* Decorative floating diamonds */}
       <div className="fixed top-10 left-10 w-8 h-8 bg-[#F3C623] rotate-45 opacity-60" />
-      <div className="fixed top-20 right-16 w-6 h-6 bg-[#259B37] rotate-45 opacity-40" />
+      <div className="fixed top-20 right-16 w-6 h-6 bg-[#4CAF50] rotate-45 opacity-40" />
       <div className="fixed bottom-16 left-20 w-10 h-10 bg-[#F3C623] rotate-45 opacity-30" />
-      <div className="fixed bottom-24 right-10 w-5 h-5 bg-[#259B37] rotate-45 opacity-50" />
+      <div className="fixed bottom-24 right-10 w-5 h-5 bg-[#4CAF50] rotate-45 opacity-50" />
       
-      <div className="bg-white rounded-3xl shadow-xl border-2 border-[#259B37]/20 p-8 w-full max-w-sm text-center relative">
+      <div className="bg-white rounded-3xl shadow-xl border-2 border-[#4CAF50]/20 p-8 w-full max-w-sm text-center relative">
         {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#259B37] via-[#F3C623] to-[#259B37] rounded-t-3xl" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4CAF50] via-[#F3C623] to-[#4CAF50] rounded-t-3xl" />
         
         {/* Logo */}
         <div className="relative mb-6 mt-2">
           <div className="w-32 h-32 mx-auto relative">
             <Image
               src="/logo.png"
-              alt="Snack Ordering App"
+              alt="Crunch by Nadan"
               fill
               className="object-contain drop-shadow-lg"
               priority
@@ -71,10 +71,11 @@ export default function Home() {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl font-extrabold text-[#259B37] mb-2">
-          Snack Order
+        <h1 className="text-3xl font-extrabold text-[#4CAF50] mb-2">
+          Crunch
         </h1>
-        <p className="text-gray-500 mb-8 font-medium">Delicious snacks delivered to you</p>
+        <p className="text-gray-500 mb-2 font-medium">by Nadan</p>
+        <p className="text-gray-400 text-sm mb-8">Delicious snacks delivered to you</p>
 
         {/* Divider with diamond */}
         <div className="flex items-center gap-3 mb-8">
@@ -86,7 +87,7 @@ export default function Home() {
         <button
           onClick={handleGoogleSignIn}
           disabled={signingIn}
-          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-[#259B37] text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-[#4CAF50] text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
         >
           <svg className="w-6 h-6" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
@@ -99,14 +100,14 @@ export default function Home() {
 
         <a
           href="/admin"
-          className="block mt-6 text-sm text-[#259B37] hover:text-[#F3C623] font-semibold transition-colors"
+          className="block mt-6 text-sm text-[#4CAF50] hover:text-[#F3C623] font-semibold transition-colors"
         >
           Admin Access →
         </a>
 
         {/* Bottom accent */}
         <div className="mt-6 pt-4 border-t border-gray-100">
-          <p className="text-xs text-gray-400">© 2024 Snack Order App</p>
+          <p className="text-xs text-gray-400">Crunch by Nadan</p>
         </div>
       </div>
     </main>

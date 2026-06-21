@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Order, Banner } from "../types";
 import { getOrders, createBanner, getBanners, deleteBanner } from "../lib/firestore";
 import OrderCard from "../components/OrderCard";
@@ -150,7 +151,7 @@ export default function AdminPage() {
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 w-full max-w-sm">
           <div className="text-center mb-6">
             <span className="text-4xl">🔐</span>
-            <h1 className="text-2xl font-extrabold text-[#259B37] mt-2">Admin Login</h1>
+            <h1 className="text-2xl font-extrabold text-[#4CAF50] mt-2">Admin Login</h1>
             <p className="text-gray-500 text-sm mt-1">Enter password to continue</p>
           </div>
 
@@ -183,7 +184,7 @@ export default function AdminPage() {
           <div className="text-center mt-4">
             <Link
               href="/"
-              className="text-sm text-[#259B37] hover:text-[#F3C623] font-semibold transition-colors"
+              className="text-sm text-[#4CAF50] hover:text-[#F3C623] font-semibold transition-colors"
             >
               ← Back to Menu
             </Link>
@@ -202,13 +203,22 @@ export default function AdminPage() {
 
   return (
     <main className="min-h-screen max-w-md mx-auto bg-white">
-      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
+      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-extrabold text-white">Admin Dashboard</h1>
-            <p className="text-sm text-white/80">
-              {orders.length} total • {activeCount} active
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 relative">
+              <Image
+                src="/logo.png"
+                alt="Crunch by Nadan"
+                fill
+                className="object-contain rounded-lg"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
+              <p className="text-xs text-white/80">by Nadan - Admin</p>
+            </div>
           </div>
           <Link
             href="/"
@@ -225,7 +235,7 @@ export default function AdminPage() {
           onClick={() => setActiveTab("orders")}
           className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "orders"
-              ? "text-[#259B37] border-b-2 border-[#259B37] bg-green-50"
+              ? "text-[#4CAF50] border-b-2 border-[#4CAF50] bg-green-50"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -235,7 +245,7 @@ export default function AdminPage() {
           onClick={() => setActiveTab("items")}
           className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "items"
-              ? "text-[#259B37] border-b-2 border-[#259B37] bg-green-50"
+              ? "text-[#4CAF50] border-b-2 border-[#4CAF50] bg-green-50"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >

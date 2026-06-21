@@ -13,18 +13,18 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [orders, setOrders] = useState<Order[]>([]);
-  const [banners, setBanners] = useState<Banner[]>([]);
+  const [items, setItems] = useState<Banner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingBanners, setIsLoadingBanners] = useState(true);
-  const [activeTab, setActiveTab] = useState<"orders" | "banners">("orders");
+  const [isLoadingItems, setIsLoadingItems] = useState(true);
+  const [activeTab, setActiveTab] = useState<"orders" | "items">("orders");
 
-  // Banner form state
-  const [bannerName, setBannerName] = useState("");
-  const [bannerPrice, setBannerPrice] = useState("");
-  const [bannerDescription, setBannerDescription] = useState("");
-  const [bannerImageUrl, setBannerImageUrl] = useState("");
-  const [bannerError, setBannerError] = useState("");
-  const [isAddingBanner, setIsAddingBanner] = useState(false);
+  // Item form state
+  const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [itemImageUrl, setItemImageUrl] = useState("");
+  const [itemError, setItemError] = useState("");
+  const [isAddingItem, setIsAddingItem] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) return;
@@ -35,15 +35,15 @@ export default function AdminPage() {
       setIsLoading(false);
     });
 
-    setIsLoadingBanners(true);
-    const unsubscribeBanners = getBanners((fetchedBanners) => {
-      setBanners(fetchedBanners);
-      setIsLoadingBanners(false);
+    setIsLoadingItems(true);
+    const unsubscribeItems = getBanners((fetchedItems) => {
+      setItems(fetchedItems);
+      setIsLoadingItems(false);
     });
 
     return () => {
       unsubscribeOrders();
-      unsubscribeBanners();
+      unsubscribeItems();
     };
   }, [isAuthenticated]);
 
@@ -57,54 +57,54 @@ export default function AdminPage() {
     }
   };
 
-  const handleAddBanner = async (e: React.FormEvent) => {
+  const handleAddItem = async (e: React.FormEvent) => {
     e.preventDefault();
-    setBannerError("");
+    setItemError("");
 
-    if (!bannerName.trim()) {
-      setBannerError("Please enter a name");
+    if (!itemName.trim()) {
+      setItemError("Please enter a name");
       return;
     }
-    if (!bannerPrice.trim() || isNaN(Number(bannerPrice)) || Number(bannerPrice) <= 0) {
-      setBannerError("Please enter a valid price");
+    if (!itemPrice.trim() || isNaN(Number(itemPrice)) || Number(itemPrice) <= 0) {
+      setItemError("Please enter a valid price");
       return;
     }
-    if (!bannerDescription.trim()) {
-      setBannerError("Please enter a description");
+    if (!itemDescription.trim()) {
+      setItemError("Please enter a description");
       return;
     }
-    if (!bannerImageUrl.trim()) {
-      setBannerError("Please enter an image URL");
+    if (!itemImageUrl.trim()) {
+      setItemError("Please enter an image URL");
       return;
     }
 
-    setIsAddingBanner(true);
+    setIsAddingItem(true);
     try {
       await createBanner({
-        name: bannerName.trim(),
-        price: Number(bannerPrice),
-        description: bannerDescription.trim(),
-        imageUrl: bannerImageUrl.trim(),
+        name: itemName.trim(),
+        price: Number(itemPrice),
+        description: itemDescription.trim(),
+        imageUrl: itemImageUrl.trim(),
       });
-      setBannerName("");
-      setBannerPrice("");
-      setBannerDescription("");
-      setBannerImageUrl("");
+      setItemName("");
+      setItemPrice("");
+      setItemDescription("");
+      setItemImageUrl("");
     } catch (err) {
-      console.error("Error adding banner:", err);
-      setBannerError("Failed to add banner. Please try again.");
+      console.error("Error adding item:", err);
+      setItemError("Failed to add item. Please try again.");
     } finally {
-      setIsAddingBanner(false);
+      setIsAddingItem(false);
     }
   };
 
-  const handleDeleteBanner = async (bannerId: string) => {
-    if (!confirm("Are you sure you want to delete this banner?")) return;
+  const handleDeleteItem = async (itemId: string) => {
+    if (!confirm("Are you sure you want to delete this item?")) return;
     try {
-      await deleteBanner(bannerId);
+      await deleteBanner(itemId);
     } catch (err) {
-      console.error("Error deleting banner:", err);
-      alert("Failed to delete banner.");
+      console.error("Error deleting item:", err);
+      alert("Failed to delete item.");
     }
   };
 
@@ -196,14 +196,14 @@ export default function AdminPage() {
           📋 Orders
         </button>
         <button
-          onClick={() => setActiveTab("banners")}
+          onClick={() => setActiveTab("items")}
           className={`flex-1 py-3 px-4 font-medium text-sm transition-colors ${
-            activeTab === "banners"
+            activeTab === "items"
               ? "text-[#FF6B35] border-b-2 border-[#FF6B35]"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          🎪 Banners ({banners.length})
+          ➕ Add Item ({items.length})
         </button>
       </div>
 
@@ -281,20 +281,20 @@ export default function AdminPage() {
           </>
         )}
 
-        {activeTab === "banners" && (
+        {activeTab === "items" && (
           <>
-            {/* Add Banner Form */}
+            {/* Add Item Form */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Add New Banner</h2>
-              <form onSubmit={handleAddBanner}>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">Add New Item</h2>
+              <form onSubmit={handleAddItem}>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Dish Name *
                   </label>
                   <input
                     type="text"
-                    value={bannerName}
-                    onChange={(e) => setBannerName(e.target.value)}
+                    value={itemName}
+                    onChange={(e) => setItemName(e.target.value)}
                     placeholder="e.g. Samosa"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
                     required
@@ -307,8 +307,8 @@ export default function AdminPage() {
                   </label>
                   <input
                     type="number"
-                    value={bannerPrice}
-                    onChange={(e) => setBannerPrice(e.target.value)}
+                    value={itemPrice}
+                    onChange={(e) => setItemPrice(e.target.value)}
                     placeholder="e.g. 20"
                     min="1"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
@@ -321,8 +321,8 @@ export default function AdminPage() {
                     Description *
                   </label>
                   <textarea
-                    value={bannerDescription}
-                    onChange={(e) => setBannerDescription(e.target.value)}
+                    value={itemDescription}
+                    onChange={(e) => setItemDescription(e.target.value)}
                     placeholder="Short description of the dish"
                     rows={3}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent resize-none"
@@ -336,8 +336,8 @@ export default function AdminPage() {
                   </label>
                   <input
                     type="url"
-                    value={bannerImageUrl}
-                    onChange={(e) => setBannerImageUrl(e.target.value)}
+                    value={itemImageUrl}
+                    onChange={(e) => setItemImageUrl(e.target.value)}
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
                     required
@@ -347,44 +347,44 @@ export default function AdminPage() {
                   </p>
                 </div>
 
-                {bannerError && (
+                {itemError && (
                   <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">
-                    {bannerError}
+                    {itemError}
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={isAddingBanner}
+                  disabled={isAddingItem}
                   className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors min-h-[48px]"
                 >
-                  {isAddingBanner ? "Adding..." : "Add Banner"}
+                  {isAddingItem ? "Adding..." : "Add Item"}
                 </button>
               </form>
             </div>
 
-            {/* Banners List */}
+            {/* Items List */}
             <h2 className="text-lg font-bold text-gray-800 mb-3">
-              Existing Banners ({banners.length})
+              Existing Items ({items.length})
             </h2>
-            {isLoadingBanners ? (
+            {isLoadingItems ? (
               <div className="text-center py-8 text-gray-500">
                 <div className="animate-spin text-3xl mb-2">⏳</div>
-                Loading banners...
+                Loading items...
               </div>
-            ) : banners.length === 0 ? (
+            ) : items.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                <span className="text-5xl block mb-3">🎪</span>
-                <p>No banners yet. Add your first one above!</p>
+                <span className="text-5xl block mb-3">🍽️</span>
+                <p>No items yet. Add your first one above!</p>
               </div>
             ) : (
               <div className="space-y-4">
-                {banners.map((banner) => (
-                  <div key={banner.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                {items.map((item) => (
+                  <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     <div className="h-40 bg-gray-100 overflow-hidden">
                       <img
-                        src={banner.imageUrl}
-                        alt={banner.name}
+                        src={item.imageUrl}
+                        alt={item.name}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = "";
@@ -396,15 +396,15 @@ export default function AdminPage() {
                     </div>
                     <div className="p-4">
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-lg text-gray-900">{banner.name}</h3>
-                        <span className="font-bold text-[#FF6B35]">₹{banner.price}</span>
+                        <h3 className="font-bold text-lg text-gray-900">{item.name}</h3>
+                        <span className="font-bold text-[#FF6B35]">₹{item.price}</span>
                       </div>
-                      <p className="text-gray-500 text-sm mb-3">{banner.description}</p>
+                      <p className="text-gray-500 text-sm mb-3">{item.description}</p>
                       <button
-                        onClick={() => handleDeleteBanner(banner.id!)}
+                        onClick={() => handleDeleteItem(item.id!)}
                         className="w-full bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 px-4 rounded-lg transition-colors min-h-[44px]"
                       >
-                        Delete Banner
+                        Delete Item
                       </button>
                     </div>
                   </div>

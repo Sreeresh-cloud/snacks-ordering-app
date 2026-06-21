@@ -108,7 +108,7 @@ export default function MenuPage() {
             <div>
               {user ? (
                 <h1 className="text-lg font-bold text-white leading-tight">
-                  Hi {user.displayName?.split(' ')[0] || 'User'}
+                  Hi {user.displayName?.split(' ')[0] || 'User'}!
                 </h1>
               ) : (
                 <>

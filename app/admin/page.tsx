@@ -248,7 +248,7 @@ export default function AdminPage() {
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          ➕ Add Item ({items.length})
+          ➕ Add Item 
         </button>
       </div>
 

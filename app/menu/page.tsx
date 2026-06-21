@@ -103,8 +103,16 @@ export default function MenuPage() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
-              <p className="text-xs text-white/80">by Nadan</p>
+              {user ? (
+                <h1 className="text-lg font-bold text-white leading-tight">
+                  Hi {user.displayName?.split(' ')[0] || 'User'}
+                </h1>
+              ) : (
+                <>
+                  <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
+                  <p className="text-xs text-white/80">by Nadan</p>
+                </>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-3">

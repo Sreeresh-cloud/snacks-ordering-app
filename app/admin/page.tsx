@@ -216,8 +216,7 @@ export default function AdminPage() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
-              <p className="text-xs text-white/80">by Nadan - Admin</p>
+              <h1 className="text-xl font-extrabold text-white leading-tight">Admin Dashboard</h1>
             </div>
           </div>
           <Link

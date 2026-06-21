@@ -30,12 +30,33 @@ const emojiMap: Record<string, string> = {
 };
 
 export default function MenuItem({ item, onAdd }: MenuItemProps) {
+  // Check if the item has a real image (not just a path like "/samosa.jpg")
+  const hasRealImage = item.image && !item.image.startsWith("/") && item.image.length > 50;
+  
   return (
     <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col">
-      <div
-        className={`h-32 ${colorMap[item.id]} flex items-center justify-center text-5xl`}
-      >
-        {emojiMap[item.id]}
+      <div className="h-32 flex items-center justify-center relative overflow-hidden">
+        {hasRealImage ? (
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              // Fallback to colored background if image fails
+              const target = e.target as HTMLImageElement;
+              target.style.display = "none";
+              const parent = target.parentElement;
+              if (parent) {
+                parent.className = `h-32 ${colorMap[item.id] || "bg-gray-100"} flex items-center justify-center text-5xl`;
+                parent.innerHTML = emojiMap[item.id] || "🍽️";
+              }
+            }}
+          />
+        ) : (
+          <div className={`w-full h-full ${colorMap[item.id] || "bg-gray-100"} flex items-center justify-center text-5xl`}>
+            {emojiMap[item.id] || "🍽️"}
+          </div>
+        )}
       </div>
       <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-1">

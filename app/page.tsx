@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -58,23 +57,19 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4CAF50] via-[#F3C623] to-[#4CAF50] rounded-t-3xl" />
         
         {/* Logo */}
-        <div className="relative mb-6 mt-2">
-          <div className="w-32 h-32 mx-auto relative">
-            <Image
-              src="/logo.png"
-              alt="Crunch by Nadan"
-              fill
-              className="object-contain drop-shadow-lg"
-              priority
-            />
-          </div>
+        <div className="mb-6 mt-2 flex justify-center">
+          <img
+            src="/logo.png"
+            alt="Crunch by Nadan"
+            className="w-32 h-32 object-contain drop-shadow-lg"
+            onError={(e) => {
+              console.error('Logo failed to load:', e);
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl font-extrabold text-[#4CAF50] mb-2">
-          Crunch
-        </h1>
-        <p className="text-gray-500 mb-2 font-medium">by Nadan</p>
         <p className="text-gray-400 text-sm mb-8">Delicious snacks delivered to you</p>
 
         {/* Divider with diamond */}
@@ -106,9 +101,7 @@ export default function Home() {
         </a>
 
         {/* Bottom accent */}
-        <div className="mt-6 pt-4 border-t border-gray-100">
-          <p className="text-xs text-gray-400">Crunch by Nadan</p>
-        </div>
+        <div className="mt-6 pt-4 border-t border-gray-100" />
       </div>
     </main>
   );

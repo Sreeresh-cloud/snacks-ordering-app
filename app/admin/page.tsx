@@ -22,7 +22,8 @@ export default function AdminPage() {
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemDescription, setItemDescription] = useState("");
-  const [itemImageUrl, setItemImageUrl] = useState("");
+  const [itemImageFile, setItemImageFile] = useState<File | null>(null);
+  const [itemImagePreview, setItemImagePreview] = useState("");
   const [itemError, setItemError] = useState("");
   const [isAddingItem, setIsAddingItem] = useState(false);
 
@@ -46,6 +47,39 @@ export default function AdminPage() {
       unsubscribeItems();
     };
   }, [isAuthenticated]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    if (!file.type.startsWith("image/")) {
+      setItemError("Please select an image file (JPEG, PNG, etc.)");
+      return;
+    }
+    
+    if (file.size > 5 * 1024 * 1024) {
+      setItemError("Image size must be less than 5MB");
+      return;
+    }
+    
+    setItemError("");
+    setItemImageFile(file);
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setItemImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const convertFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,23 +107,25 @@ export default function AdminPage() {
       setItemError("Please enter a description");
       return;
     }
-    if (!itemImageUrl.trim()) {
-      setItemError("Please enter an image URL");
+    if (!itemImageFile) {
+      setItemError("Please select an image");
       return;
     }
 
     setIsAddingItem(true);
     try {
+      const base64Image = await convertFileToBase64(itemImageFile);
       await createBanner({
         name: itemName.trim(),
         price: Number(itemPrice),
         description: itemDescription.trim(),
-        imageUrl: itemImageUrl.trim(),
+        imageUrl: base64Image,
       });
       setItemName("");
       setItemPrice("");
       setItemDescription("");
-      setItemImageUrl("");
+      setItemImageFile(null);
+      setItemImagePreview("");
     } catch (err) {
       console.error("Error adding item:", err);
       setItemError("Failed to add item. Please try again.");
@@ -332,18 +368,25 @@ export default function AdminPage() {
 
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Photo URL *
+                    Photo *
                   </label>
                   <input
-                    type="url"
-                    value={itemImageUrl}
-                    onChange={(e) => setItemImageUrl(e.target.value)}
-                    placeholder="https://example.com/image.jpg"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
-                    required
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#FF6B35] file:text-white hover:file:bg-[#E55A2B]"
                   />
+                  {itemImagePreview && (
+                    <div className="mt-3 rounded-lg overflow-hidden border border-gray-200">
+                      <img
+                        src={itemImagePreview}
+                        alt="Preview"
+                        className="w-full h-40 object-cover"
+                      />
+                    </div>
+                  )}
                   <p className="text-xs text-gray-500 mt-1">
-                    Enter a public image URL. For actual uploads, use Firebase Storage.
+                    Select an image from your device (max 5MB)
                   </p>
                 </div>
 

@@ -7,6 +7,8 @@ import { User } from "firebase/auth";
 
 interface CheckoutFormProps {
   cartItems: CartItem[];
+  subtotal: number;
+  deliveryCharge: number;
   total: number;
   onSuccess: () => void;
   onCancel: () => void;
@@ -15,6 +17,8 @@ interface CheckoutFormProps {
 
 export default function CheckoutForm({
   cartItems,
+  subtotal,
+  deliveryCharge,
   total,
   onSuccess,
   onCancel,
@@ -52,6 +56,8 @@ export default function CheckoutForm({
         phone: phone.trim(),
         address: address.trim(),
         items: cartItems,
+        subtotal,
+        deliveryCharge,
         total,
         userId: user?.uid || undefined,
         userEmail: user?.email || undefined,
@@ -152,8 +158,16 @@ export default function CheckoutForm({
               />
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+            <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-2">
               <div className="flex justify-between items-center">
+                <span className="text-gray-600">Subtotal</span>
+                <span className="text-gray-900 font-medium">₹{subtotal}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Delivery Charge</span>
+                <span className="text-gray-900 font-medium">₹{deliveryCharge}</span>
+              </div>
+              <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                 <span className="font-bold text-gray-900">Order Total</span>
                 <span className="text-xl font-bold text-[#FF6B35]">₹{total}</span>
               </div>

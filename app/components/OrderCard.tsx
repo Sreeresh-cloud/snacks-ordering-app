@@ -149,12 +149,24 @@ export default function OrderCard({ order }: OrderCardProps) {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
-        <div>
-          <span className="text-sm text-gray-500">Total: </span>
-          <span className="font-bold text-[#FF6B35]">₹{order.total}</span>
+      <div className="border-t border-gray-100 pt-3 space-y-1">
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-500">Subtotal:</span>
+          <span className="text-gray-900 font-medium">₹{order.subtotal || order.total}</span>
         </div>
-        <div className="text-xs text-gray-400">{formatDate(order.createdAt)}</div>
+        {(order.deliveryCharge ?? 0) > 0 && (
+          <div className="flex justify-between text-sm">
+            <span className="text-gray-500">Delivery Charge:</span>
+            <span className="text-gray-900 font-medium">₹{order.deliveryCharge}</span>
+          </div>
+        )}
+        <div className="flex justify-between items-center pt-1">
+          <div>
+            <span className="text-sm text-gray-500">Total: </span>
+            <span className="font-bold text-[#FF6B35]">₹{order.total}</span>
+          </div>
+          <div className="text-xs text-gray-400">{formatDate(order.createdAt)}</div>
+        </div>
       </div>
 
       {config.nextStatus && (

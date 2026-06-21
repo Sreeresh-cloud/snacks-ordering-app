@@ -7,10 +7,11 @@ import {
   onSnapshot,
   doc,
   updateDoc,
+  deleteDoc,
   where,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { Order } from "../types";
+import { Order, Banner } from "../types";
 
 export async function createOrder(
   orderData: Omit<Order, "id" | "createdAt" | "status">
@@ -93,4 +94,40 @@ export async function updateOrderStatus(
 ): Promise<void> {
   const orderRef = doc(db, "orders", orderId);
   await updateDoc(orderRef, { status });
+}
+
+// Banner/Food Item Management
+export async function createBanner(bannerData: Omit<Banner, "id" | "createdAt">): Promise<string> {
+  const bannersRef = collection(db, "banners");
+  const docRef = await addDoc(bannersRef, {
+    ...bannerData,
+    createdAt: serverTimestamp(),
+  });
+  return docRef.id;
+}
+
+export function getBanners(callback: (banners: Banner[]) => void): () => void {
+  const q = query(collection(db, "banners"), orderBy("createdAt", "desc"));
+
+  const unsubscribe = onSnapshot(
+    q,
+    (snapshot) => {
+      const banners: Banner[] = snapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      })) as Banner[];
+      callback(banners);
+    },
+    (error) => {
+      console.error("Error fetching banners:", error);
+      callback([]);
+    }
+  );
+
+  return unsubscribe;
+}
+
+export async function deleteBanner(bannerId: string): Promise<void> {
+  const bannerRef = doc(db, "banners", bannerId);
+  await deleteDoc(bannerRef);
 }

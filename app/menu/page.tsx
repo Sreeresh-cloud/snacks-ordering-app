@@ -39,7 +39,6 @@ export default function MenuPage() {
     setIsLoading(true);
     const unsubscribe = getBanners((banners) => {
       if (banners.length > 0) {
-        // Convert Banner to MenuItemData
         const dynamicItems: MenuItemData[] = banners.map((banner) => ({
           id: banner.id!,
           name: banner.name,
@@ -88,12 +87,12 @@ export default function MenuPage() {
   const totalPrice = subtotal + deliveryCharge;
 
   return (
-    <main className="min-h-screen pb-20 max-w-md mx-auto">
-      <header className="sticky top-0 bg-[#FFF8F0] z-40 border-b border-orange-100 px-4 py-3">
+    <main className="min-h-screen pb-20 max-w-md mx-auto bg-[#259B37]">
+      <header className="sticky top-0 bg-[#259B37] z-40 border-b-2 border-[#F3C623] px-4 py-3">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Snacks 🍴</h1>
-            <p className="text-sm text-gray-500">Delicious bites delivered</p>
+            <h1 className="text-2xl font-extrabold text-white drop-shadow-md">Snacks 💎</h1>
+            <p className="text-sm text-white/80 font-medium">Delicious bites delivered</p>
           </div>
           <div className="flex items-center gap-3">
             <UserProfile />
@@ -102,10 +101,10 @@ export default function MenuPage() {
       </header>
 
       <div className="px-4 py-4">
-        <h2 className="text-lg font-bold text-gray-800 mb-4">Popular Items</h2>
+        <h2 className="text-lg font-extrabold text-[#F3C623] mb-4 drop-shadow-sm">Popular Items</h2>
         {isLoading ? (
-          <div className="text-center py-12 text-gray-500">
-            <div className="animate-spin text-3xl mb-2">🍴</div>
+          <div className="text-center py-12 text-white/80">
+            <div className="animate-spin text-3xl mb-2 text-[#F3C623]">💎</div>
             Loading menu...
           </div>
         ) : (

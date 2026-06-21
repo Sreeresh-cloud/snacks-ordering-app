@@ -163,7 +163,7 @@ export default function OrderCard({ order }: OrderCardProps) {
         <div className="flex justify-between items-center pt-1">
           <div>
             <span className="text-sm text-gray-500">Total: </span>
-            <span className="font-bold text-[#FF6B35]">₹{order.total}</span>
+            <span className="font-bold text-[#F3C623]">₹{order.total}</span>
           </div>
           <div className="text-xs text-gray-400">{formatDate(order.createdAt)}</div>
         </div>

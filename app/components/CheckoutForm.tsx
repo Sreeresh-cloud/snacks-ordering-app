@@ -126,7 +126,7 @@ export default function CheckoutForm({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px]"
                 required
               />
             </div>
@@ -140,7 +140,7 @@ export default function CheckoutForm({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Enter 10-digit number"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px]"
                 required
               />
             </div>
@@ -154,7 +154,7 @@ export default function CheckoutForm({
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Delivery address"
                 rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent resize-none"
               />
             </div>
 
@@ -169,14 +169,14 @@ export default function CheckoutForm({
               </div>
               <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                 <span className="font-bold text-gray-900">Order Total</span>
-                <span className="text-xl font-bold text-[#FF6B35]">₹{total}</span>
+                <span className="text-xl font-bold text-[#F3C623]">₹{total}</span>
               </div>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting || cartItems.length === 0}
-              className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition-colors min-h-[56px]"
+              className="w-full bg-[#F3C623] hover:bg-[#d4ad1f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition-colors min-h-[56px]"
             >
               {isSubmitting ? "Placing Order..." : "Place Order"}
             </button>

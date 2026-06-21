@@ -40,12 +40,12 @@ export default function MenuItem({ item, onAdd }: MenuItemProps) {
       <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-1">
           <h3 className="font-bold text-lg text-gray-900">{item.name}</h3>
-          <span className="font-bold text-[#FF6B35]">₹{item.price}</span>
+          <span className="font-bold text-[#F3C623]">₹{item.price}</span>
         </div>
         <p className="text-gray-500 text-sm mb-3 flex-1">{item.description}</p>
         <button
           onClick={() => onAdd(item)}
-          className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-3 px-4 rounded-lg transition-colors min-h-[44px]"
+          className="w-full bg-[#F3C623] hover:bg-[#d4ad1f] text-white font-bold py-3 px-4 rounded-lg transition-colors min-h-[44px]"
         >
           Add to Cart
         </button>

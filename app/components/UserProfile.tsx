@@ -68,7 +68,7 @@ export default function UserProfile({ variant = "light" }: UserProfileProps) {
     return (
       <button
         onClick={handleSignIn}
-        className="flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-[#FF6B35] text-gray-700 font-medium px-4 py-2 rounded-lg transition-colors min-h-[44px]"
+        className="flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-[#F3C623] text-gray-700 font-medium px-4 py-2 rounded-lg transition-colors min-h-[44px]"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
@@ -104,10 +104,10 @@ export default function UserProfile({ variant = "light" }: UserProfileProps) {
               <img
                 src={user.photoURL}
                 alt={user.displayName || "User"}
-                className="w-10 h-10 rounded-full object-cover border-2 border-[#FF6B35]"
+                className="w-10 h-10 rounded-full object-cover border-2 border-[#F3C623]"
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-[#FF6B35] text-white flex items-center justify-center font-bold text-sm">
+              <div className="w-10 h-10 rounded-full bg-[#F3C623] text-white flex items-center justify-center font-bold text-sm">
                 {user.displayName?.[0] || user.email?.[0] || "?"}
               </div>
             )}

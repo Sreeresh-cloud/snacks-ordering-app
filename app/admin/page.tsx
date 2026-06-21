@@ -146,11 +146,11 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen bg-[#FFF8F0] flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
+      <main className="min-h-screen bg-[#259B37] flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
           <div className="text-center mb-6">
             <span className="text-4xl">🔐</span>
-            <h1 className="text-2xl font-bold text-gray-900 mt-2">Admin Login</h1>
+            <h1 className="text-2xl font-extrabold text-[#259B37] mt-2">Admin Login</h1>
             <p className="text-gray-500 text-sm mt-1">Enter password to continue</p>
           </div>
 
@@ -161,20 +161,20 @@ export default function AdminPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px]"
                 autoFocus
               />
             </div>
 
             {error && (
-              <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm text-center">
+              <div className="bg-red-50 text-[#C00A14] p-3 rounded-lg mb-4 text-sm text-center font-semibold">
                 {error}
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-3 px-6 rounded-lg transition-colors min-h-[48px]"
+              className="w-full bg-[#F3C623] hover:bg-[#d4ad1f] text-gray-900 font-bold py-3 px-6 rounded-lg transition-colors min-h-[48px] shadow-md"
             >
               Login
             </button>
@@ -183,7 +183,7 @@ export default function AdminPage() {
           <div className="text-center mt-4">
             <Link
               href="/"
-              className="text-sm text-[#FF6B35] hover:underline"
+              className="text-sm text-[#259B37] hover:text-[#F3C623] font-semibold transition-colors"
             >
               ← Back to Menu
             </Link>
@@ -201,18 +201,18 @@ export default function AdminPage() {
   const activeCount = placedOrders.length + preparingOrders.length + outForDeliveryOrders.length;
 
   return (
-    <main className="min-h-screen max-w-md mx-auto">
-      <header className="sticky top-0 bg-white z-40 border-b border-gray-200 px-4 py-3">
+    <main className="min-h-screen max-w-md mx-auto bg-[#259B37]">
+      <header className="sticky top-0 bg-[#259B37] z-40 border-b-2 border-[#F3C623] px-4 py-3">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-sm text-gray-500">
+            <h1 className="text-2xl font-extrabold text-white drop-shadow-md">Admin Dashboard</h1>
+            <p className="text-sm text-white/80">
               {orders.length} total • {activeCount} active
             </p>
           </div>
           <Link
             href="/"
-            className="text-sm text-[#FF6B35] font-medium hover:underline min-h-[44px] flex items-center"
+            className="text-sm text-[#F3C623] font-bold hover:text-white min-h-[44px] flex items-center transition-colors"
           >
             Menu →
           </Link>
@@ -220,23 +220,23 @@ export default function AdminPage() {
       </header>
 
       {/* Tab Navigation */}
-      <div className="flex border-b border-gray-200 sticky top-[60px] bg-white z-30">
+      <div className="flex border-b-2 border-[#F3C623] sticky top-[60px] bg-[#259B37] z-30">
         <button
           onClick={() => setActiveTab("orders")}
-          className={`flex-1 py-3 px-4 font-medium text-sm transition-colors ${
+          className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "orders"
-              ? "text-[#FF6B35] border-b-2 border-[#FF6B35]"
-              : "text-gray-500 hover:text-gray-700"
+              ? "text-[#F3C623] border-b-2 border-[#F3C623]"
+              : "text-white/70 hover:text-white"
           }`}
         >
           📋 Orders
         </button>
         <button
           onClick={() => setActiveTab("items")}
-          className={`flex-1 py-3 px-4 font-medium text-sm transition-colors ${
+          className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "items"
-              ? "text-[#FF6B35] border-b-2 border-[#FF6B35]"
-              : "text-gray-500 hover:text-gray-700"
+              ? "text-[#F3C623] border-b-2 border-[#F3C623]"
+              : "text-white/70 hover:text-white"
           }`}
         >
           ➕ Add Item ({items.length})
@@ -332,7 +332,7 @@ export default function AdminPage() {
                     value={itemName}
                     onChange={(e) => setItemName(e.target.value)}
                     placeholder="e.g. Samosa"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px]"
                     required
                   />
                 </div>
@@ -347,7 +347,7 @@ export default function AdminPage() {
                     onChange={(e) => setItemPrice(e.target.value)}
                     placeholder="e.g. 20"
                     min="1"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px]"
                     required
                   />
                 </div>
@@ -361,7 +361,7 @@ export default function AdminPage() {
                     onChange={(e) => setItemDescription(e.target.value)}
                     placeholder="Short description of the dish"
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent resize-none"
                     required
                   />
                 </div>
@@ -374,7 +374,7 @@ export default function AdminPage() {
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent min-h-[48px] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#FF6B35] file:text-white hover:file:bg-[#E55A2B]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F3C623] focus:border-transparent min-h-[48px] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#F3C623] file:text-white hover:file:bg-[#d4ad1f]"
                   />
                   {itemImagePreview && (
                     <div className="mt-3 rounded-lg overflow-hidden border border-gray-200">
@@ -399,7 +399,7 @@ export default function AdminPage() {
                 <button
                   type="submit"
                   disabled={isAddingItem}
-                  className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors min-h-[48px]"
+                  className="w-full bg-[#F3C623] hover:bg-[#d4ad1f] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors min-h-[48px]"
                 >
                   {isAddingItem ? "Adding..." : "Add Item"}
                 </button>
@@ -440,7 +440,7 @@ export default function AdminPage() {
                     <div className="p-4">
                       <div className="flex justify-between items-start mb-1">
                         <h3 className="font-bold text-lg text-gray-900">{item.name}</h3>
-                        <span className="font-bold text-[#FF6B35]">₹{item.price}</span>
+                        <span className="font-bold text-[#F3C623]">₹{item.price}</span>
                       </div>
                       <p className="text-gray-500 text-sm mb-3">{item.description}</p>
                       <button

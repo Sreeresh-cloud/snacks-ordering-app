@@ -74,7 +74,7 @@ export default function MyOrdersPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#FFF8F0] flex items-center justify-center">
+      <main className="min-h-screen bg-[#259B37] flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </main>
     );
@@ -82,8 +82,8 @@ export default function MyOrdersPage() {
 
   if (!user) {
     return (
-      <main className="min-h-screen bg-[#FFF8F0]">
-        <header className="sticky top-0 bg-[#FFF8F0] z-40 border-b border-orange-100 px-4 py-3">
+      <main className="min-h-screen bg-[#259B37]">
+        <header className="sticky top-0 bg-[#259B37] z-40 border-b border-orange-100 px-4 py-3">
           <div className="flex justify-between items-center max-w-md mx-auto">
             <Link href="/" className="text-2xl font-bold text-gray-900">← Snacks</Link>
           </div>
@@ -92,7 +92,7 @@ export default function MyOrdersPage() {
           <div className="text-6xl mb-4">🔒</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Sign In Required</h1>
           <p className="text-gray-600 mb-6">Please sign in with Google to view your orders.</p>
-          <Link href="/" className="inline-flex items-center justify-center bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-3 px-6 rounded-lg transition-colors">
+          <Link href="/" className="inline-flex items-center justify-center bg-[#F3C623] hover:bg-[#d4ad1f] text-white font-bold py-3 px-6 rounded-lg transition-colors">
             Go to Home
           </Link>
         </div>
@@ -101,15 +101,15 @@ export default function MyOrdersPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F0] pb-20">
-      <header className="sticky top-0 bg-[#FFF8F0] z-40 border-b border-orange-100 px-4 py-3">
+    <main className="min-h-screen bg-[#259B37] pb-20">
+      <header className="sticky top-0 bg-[#259B37] z-40 border-b border-orange-100 px-4 py-3">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <Link href="/" className="text-2xl font-bold text-gray-900">← Snacks</Link>
           <div className="flex items-center gap-3">
             {user.photoURL ? (
-              <img src={user.photoURL} alt={user.displayName || "User"} className="w-9 h-9 rounded-full object-cover border-2 border-[#FF6B35]" />
+              <img src={user.photoURL} alt={user.displayName || "User"} className="w-9 h-9 rounded-full object-cover border-2 border-[#F3C623]" />
             ) : (
-              <div className="w-9 h-9 rounded-full bg-[#FF6B35] text-white flex items-center justify-center font-bold text-sm">
+              <div className="w-9 h-9 rounded-full bg-[#F3C623] text-white flex items-center justify-center font-bold text-sm">
                 {user.displayName?.[0] || user.email?.[0] || "?"}
               </div>
             )}
@@ -128,7 +128,7 @@ export default function MyOrdersPage() {
             <div className="text-6xl mb-4">📦</div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">No Orders Yet</h2>
             <p className="text-gray-600 mb-6">You haven't placed any orders yet.</p>
-            <Link href="/" className="inline-flex items-center justify-center bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-3 px-6 rounded-lg transition-colors">
+            <Link href="/" className="inline-flex items-center justify-center bg-[#F3C623] hover:bg-[#d4ad1f] text-white font-bold py-3 px-6 rounded-lg transition-colors">
               Start Ordering
             </Link>
           </div>
@@ -166,7 +166,7 @@ export default function MyOrdersPage() {
                   <div className="flex justify-between items-center mb-4">
                     <div>
                       <span className="text-sm text-gray-500">Total: </span>
-                      <span className="font-bold text-[#FF6B35]">₹{order.total}</span>
+                      <span className="font-bold text-[#F3C623]">₹{order.total}</span>
                     </div>
                     <div className="text-xs text-gray-400">{formatDate(order.createdAt)}</div>
                   </div>
@@ -178,11 +178,11 @@ export default function MyOrdersPage() {
                       {[1, 2, 3, 4].map((step) => (
                         <div key={step} className="flex-1 flex items-center">
                           <div className={`h-2 flex-1 rounded-full ${
-                            step <= currentStep ? 'bg-[#FF6B35]' : 'bg-gray-200'
+                            step <= currentStep ? 'bg-[#F3C623]' : 'bg-gray-200'
                           }`} />
                           {step < 4 && (
                             <div className={`w-2 h-2 rounded-full mx-0.5 ${
-                              step < currentStep ? 'bg-[#FF6B35]' : 'bg-gray-200'
+                              step < currentStep ? 'bg-[#F3C623]' : 'bg-gray-200'
                             }`} />
                           )}
                         </div>

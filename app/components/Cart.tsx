@@ -41,7 +41,7 @@ export default function Cart({
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-bold text-[#FF6B35]">₹{totalPrice}</span>
+            <span className="font-bold text-[#F3C623]">₹{totalPrice}</span>
             <svg
               className={`w-5 h-5 text-gray-400 transition-transform ${
                 isOpen ? "rotate-180" : ""
@@ -87,7 +87,7 @@ export default function Cart({
                       >
                         <div className="flex-1">
                           <p className="font-medium text-gray-900">{item.name}</p>
-                          <p className="text-[#FF6B35] font-medium">
+                          <p className="text-[#F3C623] font-medium">
                             ₹{item.price * item.quantity}
                           </p>
                         </div>
@@ -103,7 +103,7 @@ export default function Cart({
                           </span>
                           <button
                             onClick={() => onUpdateQuantity(item.id, 1)}
-                            className="w-8 h-8 flex items-center justify-center bg-[#FF6B35] rounded-full text-white font-bold min-h-[32px]"
+                            className="w-8 h-8 flex items-center justify-center bg-[#F3C623] rounded-full text-white font-bold min-h-[32px]"
                           >
                             +
                           </button>
@@ -131,7 +131,7 @@ export default function Cart({
                       <span className="text-lg font-bold text-gray-900">
                         Total
                       </span>
-                      <span className="text-xl font-bold text-[#FF6B35]">
+                      <span className="text-xl font-bold text-[#F3C623]">
                         ₹{totalPrice}
                       </span>
                     </div>
@@ -142,7 +142,7 @@ export default function Cart({
                       setIsOpen(false);
                       onCheckout();
                     }}
-                    className="w-full bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-4 px-6 rounded-lg transition-colors min-h-[56px] mb-4"
+                    className="w-full bg-[#F3C623] hover:bg-[#d4ad1f] text-white font-bold py-4 px-6 rounded-lg transition-colors min-h-[56px] mb-4"
                   >
                     Proceed to Checkout
                   </button>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { auth } from "./lib/firebase";
 import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -35,26 +36,50 @@ export default function Home() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#FFF8F0] flex items-center justify-center">
+      <main className="min-h-screen bg-[#259B37] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin text-4xl mb-2">🍴</div>
-          <p className="text-gray-500">Loading...</p>
+          <div className="animate-spin text-4xl mb-2 text-[#F3C623]">💎</div>
+          <p className="text-white/80">Loading...</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F0] flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm text-center">
-        <div className="text-6xl mb-4">🍿</div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome</h1>
-        <p className="text-gray-600 mb-8">Order delicious snacks online</p>
+    <main className="min-h-screen bg-[#259B37] flex items-center justify-center p-4">
+      <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center relative overflow-hidden">
+        {/* Decorative diamond accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#F3C623] rotate-45 shadow-lg" />
+        
+        {/* Logo */}
+        <div className="relative mb-6 mt-4">
+          <div className="w-24 h-24 mx-auto relative">
+            <Image
+              src="/logo.png"
+              alt="Snack Ordering App"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Title with shadow effect */}
+        <h1 
+          className="text-3xl font-extrabold text-white mb-2"
+          style={{ 
+            textShadow: "2px 2px 0px #C00A14, -1px -1px 0px #C00A14, 1px -1px 0px #C00A14, -1px 1px 0px #C00A14",
+            WebkitTextStroke: "1px #C00A14"
+          }}
+        >
+          Welcome
+        </h1>
+        <p className="text-gray-600 mb-8 font-medium">Order delicious snacks online</p>
 
         <button
           onClick={handleGoogleSignIn}
           disabled={signingIn}
-          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-[#F3C623] text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
         >
           <svg className="w-6 h-6" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
@@ -67,7 +92,7 @@ export default function Home() {
 
         <a
           href="/admin"
-          className="block mt-6 text-sm text-[#FF6B35] hover:underline"
+          className="block mt-6 text-sm text-[#259B37] hover:text-[#F3C623] font-semibold transition-colors"
         >
           Admin Access →
         </a>

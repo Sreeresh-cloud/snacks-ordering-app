@@ -74,7 +74,7 @@ export default function MyOrdersPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#259B37] flex items-center justify-center">
+      <main className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </main>
     );
@@ -82,10 +82,10 @@ export default function MyOrdersPage() {
 
   if (!user) {
     return (
-      <main className="min-h-screen bg-[#259B37]">
-        <header className="sticky top-0 bg-[#259B37] z-40 border-b border-orange-100 px-4 py-3">
+      <main className="min-h-screen bg-white">
+        <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
           <div className="flex justify-between items-center max-w-md mx-auto">
-            <Link href="/" className="text-2xl font-bold text-gray-900">← Snacks</Link>
+            <Link href="/" className="text-2xl font-extrabold text-white">← Snacks</Link>
           </div>
         </header>
         <div className="max-w-md mx-auto px-4 py-12 text-center">
@@ -101,10 +101,10 @@ export default function MyOrdersPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#259B37] pb-20">
-      <header className="sticky top-0 bg-[#259B37] z-40 border-b border-orange-100 px-4 py-3">
+    <main className="min-h-screen bg-white pb-20">
+      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
-          <Link href="/" className="text-2xl font-bold text-gray-900">← Snacks</Link>
+          <Link href="/" className="text-2xl font-extrabold text-white">← Snacks</Link>
           <div className="flex items-center gap-3">
             {user.photoURL ? (
               <img src={user.photoURL} alt={user.displayName || "User"} className="w-9 h-9 rounded-full object-cover border-2 border-[#F3C623]" />

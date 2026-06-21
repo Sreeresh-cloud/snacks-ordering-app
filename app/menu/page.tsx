@@ -87,12 +87,13 @@ export default function MenuPage() {
   const totalPrice = subtotal + deliveryCharge;
 
   return (
-    <main className="min-h-screen pb-20 max-w-md mx-auto bg-[#259B37]">
-      <header className="sticky top-0 bg-[#259B37] z-40 border-b-2 border-[#F3C623] px-4 py-3">
+    <main className="min-h-screen pb-20 max-w-md mx-auto bg-white">
+      {/* Header */}
+      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <div>
-            <h1 className="text-2xl font-extrabold text-white drop-shadow-md">Snacks 💎</h1>
-            <p className="text-sm text-white/80 font-medium">Delicious bites delivered</p>
+            <h1 className="text-2xl font-extrabold text-white">Snacks</h1>
+            <p className="text-sm text-white/80">Delicious bites delivered</p>
           </div>
           <div className="flex items-center gap-3">
             <UserProfile />
@@ -100,11 +101,24 @@ export default function MenuPage() {
         </div>
       </header>
 
+      {/* Decorative banner */}
+      <div className="bg-gradient-to-r from-[#259B37] to-[#2eb545] px-4 py-2">
+        <div className="flex items-center gap-2 justify-center">
+          <div className="w-2 h-2 bg-[#F3C623] rotate-45" />
+          <p className="text-white text-sm font-medium">Fresh & Hot Delivery</p>
+          <div className="w-2 h-2 bg-[#F3C623] rotate-45" />
+        </div>
+      </div>
+
       <div className="px-4 py-4">
-        <h2 className="text-lg font-extrabold text-[#F3C623] mb-4 drop-shadow-sm">Popular Items</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-6 bg-[#F3C623] rounded-full" />
+          <h2 className="text-lg font-extrabold text-gray-800">Popular Items</h2>
+        </div>
+        
         {isLoading ? (
-          <div className="text-center py-12 text-white/80">
-            <div className="animate-spin text-3xl mb-2 text-[#F3C623]">💎</div>
+          <div className="text-center py-12 text-gray-500">
+            <div className="animate-spin text-3xl mb-2 text-[#259B37]">◆</div>
             Loading menu...
           </div>
         ) : (

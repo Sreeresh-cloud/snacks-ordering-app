@@ -146,8 +146,8 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen bg-[#259B37] flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
+      <main className="min-h-screen bg-white flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 w-full max-w-sm">
           <div className="text-center mb-6">
             <span className="text-4xl">🔐</span>
             <h1 className="text-2xl font-extrabold text-[#259B37] mt-2">Admin Login</h1>
@@ -201,11 +201,11 @@ export default function AdminPage() {
   const activeCount = placedOrders.length + preparingOrders.length + outForDeliveryOrders.length;
 
   return (
-    <main className="min-h-screen max-w-md mx-auto bg-[#259B37]">
-      <header className="sticky top-0 bg-[#259B37] z-40 border-b-2 border-[#F3C623] px-4 py-3">
+    <main className="min-h-screen max-w-md mx-auto bg-white">
+      <header className="sticky top-0 bg-[#259B37] z-40 px-4 py-3 shadow-md">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-extrabold text-white drop-shadow-md">Admin Dashboard</h1>
+            <h1 className="text-2xl font-extrabold text-white">Admin Dashboard</h1>
             <p className="text-sm text-white/80">
               {orders.length} total • {activeCount} active
             </p>
@@ -220,13 +220,13 @@ export default function AdminPage() {
       </header>
 
       {/* Tab Navigation */}
-      <div className="flex border-b-2 border-[#F3C623] sticky top-[60px] bg-[#259B37] z-30">
+      <div className="flex border-b border-gray-200 sticky top-[60px] bg-white z-30">
         <button
           onClick={() => setActiveTab("orders")}
           className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "orders"
-              ? "text-[#F3C623] border-b-2 border-[#F3C623]"
-              : "text-white/70 hover:text-white"
+              ? "text-[#259B37] border-b-2 border-[#259B37] bg-green-50"
+              : "text-gray-500 hover:text-gray-700"
           }`}
         >
           📋 Orders
@@ -235,8 +235,8 @@ export default function AdminPage() {
           onClick={() => setActiveTab("items")}
           className={`flex-1 py-3 px-4 font-bold text-sm transition-colors ${
             activeTab === "items"
-              ? "text-[#F3C623] border-b-2 border-[#F3C623]"
-              : "text-white/70 hover:text-white"
+              ? "text-[#259B37] border-b-2 border-[#259B37] bg-green-50"
+              : "text-gray-500 hover:text-gray-700"
           }`}
         >
           ➕ Add Item ({items.length})

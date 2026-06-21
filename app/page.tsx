@@ -36,50 +36,57 @@ export default function Home() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#259B37] flex items-center justify-center">
+      <main className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin text-4xl mb-2 text-[#F3C623]">💎</div>
-          <p className="text-white/80">Loading...</p>
+          <div className="animate-spin text-4xl mb-2 text-[#259B37]">◆</div>
+          <p className="text-gray-500">Loading...</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#259B37] flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center relative overflow-hidden">
-        {/* Decorative diamond accent */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#F3C623] rotate-45 shadow-lg" />
+    <main className="min-h-screen bg-white flex items-center justify-center p-4">
+      {/* Decorative floating diamonds */}
+      <div className="fixed top-10 left-10 w-8 h-8 bg-[#F3C623] rotate-45 opacity-60" />
+      <div className="fixed top-20 right-16 w-6 h-6 bg-[#259B37] rotate-45 opacity-40" />
+      <div className="fixed bottom-16 left-20 w-10 h-10 bg-[#F3C623] rotate-45 opacity-30" />
+      <div className="fixed bottom-24 right-10 w-5 h-5 bg-[#259B37] rotate-45 opacity-50" />
+      
+      <div className="bg-white rounded-3xl shadow-xl border-2 border-[#259B37]/20 p-8 w-full max-w-sm text-center relative">
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#259B37] via-[#F3C623] to-[#259B37] rounded-t-3xl" />
         
         {/* Logo */}
-        <div className="relative mb-6 mt-4">
-          <div className="w-24 h-24 mx-auto relative">
+        <div className="relative mb-6 mt-2">
+          <div className="w-32 h-32 mx-auto relative">
             <Image
               src="/logo.png"
               alt="Snack Ordering App"
               fill
-              className="object-contain"
+              className="object-contain drop-shadow-lg"
               priority
             />
           </div>
         </div>
 
-        {/* Title with shadow effect */}
-        <h1 
-          className="text-3xl font-extrabold text-white mb-2"
-          style={{ 
-            textShadow: "2px 2px 0px #C00A14, -1px -1px 0px #C00A14, 1px -1px 0px #C00A14, -1px 1px 0px #C00A14",
-            WebkitTextStroke: "1px #C00A14"
-          }}
-        >
-          Welcome
+        {/* Title */}
+        <h1 className="text-3xl font-extrabold text-[#259B37] mb-2">
+          Snack Order
         </h1>
-        <p className="text-gray-600 mb-8 font-medium">Order delicious snacks online</p>
+        <p className="text-gray-500 mb-8 font-medium">Delicious snacks delivered to you</p>
+
+        {/* Divider with diamond */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="flex-1 h-px bg-gray-200" />
+          <div className="w-3 h-3 bg-[#F3C623] rotate-45" />
+          <div className="flex-1 h-px bg-gray-200" />
+        </div>
 
         <button
           onClick={handleGoogleSignIn}
           disabled={signingIn}
-          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-[#F3C623] text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+          className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-[#259B37] text-gray-700 font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
         >
           <svg className="w-6 h-6" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
@@ -96,6 +103,11 @@ export default function Home() {
         >
           Admin Access →
         </a>
+
+        {/* Bottom accent */}
+        <div className="mt-6 pt-4 border-t border-gray-100">
+          <p className="text-xs text-gray-400">© 2024 Snack Order App</p>
+        </div>
       </div>
     </main>
   );

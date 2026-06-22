@@ -10,6 +10,7 @@ import { MenuItemData, CartItem } from "../types";
 import { auth } from "../lib/firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { getBanners } from "../lib/firestore";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const defaultSnacks: MenuItemData[] = [
   { id: "1", name: "Samosa", price: 20, image: "/samosa.jpg", description: "Crispy potato-filled pastry" },
@@ -93,7 +94,7 @@ export default function MenuPage() {
   return (
     <main className="min-h-screen pb-20 max-w-md mx-auto bg-white">
       {/* Header */}
-      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
+      <header className="sticky top-0 bg-gradient-to-r from-white via-[#c8e6c9] to-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 relative">
@@ -107,13 +108,13 @@ export default function MenuPage() {
             </div>
             <div>
               {user ? (
-                <h1 className="text-lg font-bold text-white leading-tight">
+                <h1 className="text-lg font-bold text-[#2e7d32] leading-tight">
                   Hi {user.displayName?.split(' ')[0] || 'User'}!
                 </h1>
               ) : (
                 <>
-                  <h1 className="text-xl font-extrabold text-white leading-tight">Crunch</h1>
-                  <p className="text-xs text-white/80">by Nadan</p>
+                  <h1 className="text-xl font-extrabold text-[#2e7d32] leading-tight">Crunch</h1>
+                  <p className="text-xs text-[#2e7d32]/70">by Nadan</p>
                 </>
               )}
             </div>
@@ -125,10 +126,10 @@ export default function MenuPage() {
       </header>
 
       {/* Decorative banner */}
-      <div className="bg-gradient-to-r from-[#4CAF50] to-[#2eb545] px-4 py-2">
+      <div className="bg-[#c8e6c9] px-4 py-2">
         <div className="flex items-center gap-2 justify-center">
           <div className="w-2 h-2 bg-[#F3C623] rotate-45" />
-          <p className="text-white text-sm font-medium">Fresh & Hot Delivery</p>
+          <p className="text-[#2e7d32] text-sm font-medium">Fresh & Hot Delivery</p>
           <div className="w-2 h-2 bg-[#F3C623] rotate-45" />
         </div>
       </div>
@@ -140,9 +141,8 @@ export default function MenuPage() {
         </div>
         
         {isLoading ? (
-          <div className="text-center py-12 text-gray-500">
-            <div className="animate-spin text-3xl mb-2 text-[#4CAF50]">◆</div>
-            Loading menu...
+          <div className="py-12">
+            <LoadingSpinner text="Loading menu..." />
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-3">

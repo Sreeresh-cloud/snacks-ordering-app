@@ -6,6 +6,7 @@ import { Order, Banner } from "../types";
 import { getOrders, createBanner, getBanners, deleteBanner } from "../lib/firestore";
 import OrderCard from "../components/OrderCard";
 import Link from "next/link";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ADMIN_PASSWORD = "admin123";
 
@@ -203,7 +204,7 @@ export default function AdminPage() {
 
   return (
     <main className="min-h-screen max-w-md mx-auto bg-white">
-      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
+      <header className="sticky top-0 bg-gradient-to-r from-white via-[#c8e6c9] to-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 relative">
@@ -216,12 +217,12 @@ export default function AdminPage() {
               />
             </div>
             <div>
-              <h1 className="text-xl font-extrabold text-white leading-tight">Admin Dashboard</h1>
+              <h1 className="text-xl font-extrabold text-[#2e7d32] leading-tight">Admin Dashboard</h1>
             </div>
           </div>
           <Link
             href="/"
-            className="text-sm text-[#F3C623] font-bold hover:text-white min-h-[44px] flex items-center transition-colors"
+            className="text-sm text-[#2e7d32] font-bold hover:text-[#F3C623] min-h-[44px] flex items-center transition-colors"
           >
             Menu →
           </Link>
@@ -256,9 +257,8 @@ export default function AdminPage() {
         {activeTab === "orders" && (
           <>
             {isLoading ? (
-              <div className="text-center py-12 text-gray-500">
-                <div className="animate-spin text-3xl mb-2">⏳</div>
-                Loading orders...
+              <div className="py-12">
+                <LoadingSpinner text="Loading orders..." />
               </div>
             ) : orders.length === 0 ? (
               <div className="text-center py-12">
@@ -420,9 +420,8 @@ export default function AdminPage() {
               Existing Items ({items.length})
             </h2>
             {isLoadingItems ? (
-              <div className="text-center py-8 text-gray-500">
-                <div className="animate-spin text-3xl mb-2">⏳</div>
-                Loading items...
+              <div className="py-8">
+                <LoadingSpinner size={40} text="Loading items..." />
               </div>
             ) : items.length === 0 ? (
               <div className="text-center py-8 text-gray-500">

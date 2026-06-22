@@ -8,6 +8,7 @@ import { getUserOrders, updateOrderStatus } from "../lib/firestore";
 import { Order } from "../types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const statusConfig: Record<string, { label: string; color: string; step: number }> = {
   placed: { label: "Placed", color: "bg-blue-100 text-blue-700", step: 1 },
@@ -76,7 +77,7 @@ export default function MyOrdersPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-gray-500">Loading...</div>
+        <LoadingSpinner text="Loading..." />
       </main>
     );
   }
@@ -84,7 +85,7 @@ export default function MyOrdersPage() {
   if (!user) {
     return (
       <main className="min-h-screen bg-white">
-        <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
+        <header className="sticky top-0 bg-gradient-to-r from-white via-[#c8e6c9] to-[#4CAF50] z-40 px-4 py-2 shadow-md">
           <div className="flex justify-between items-center max-w-md mx-auto">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 relative">
@@ -96,7 +97,7 @@ export default function MyOrdersPage() {
                   priority
                 />
               </div>
-              <Link href="/" className="text-xl font-extrabold text-white">← Orders</Link>
+              <Link href="/" className="text-xl font-extrabold text-[#2e7d32]">← Orders</Link>
             </div>
           </div>
         </header>
@@ -114,7 +115,7 @@ export default function MyOrdersPage() {
 
   return (
     <main className="min-h-screen bg-white pb-20">
-      <header className="sticky top-0 bg-[#4CAF50] z-40 px-4 py-2 shadow-md">
+      <header className="sticky top-0 bg-gradient-to-r from-white via-[#c8e6c9] to-[#4CAF50] z-40 px-4 py-2 shadow-md">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 relative">
@@ -126,7 +127,7 @@ export default function MyOrdersPage() {
                 priority
               />
             </div>
-            <Link href="/" className="text-xl font-extrabold text-white">← My Orders</Link>
+            <Link href="/" className="text-xl font-extrabold text-[#2e7d32]">← My Orders</Link>
           </div>
           <div className="flex items-center gap-3">
             {user.photoURL ? (
